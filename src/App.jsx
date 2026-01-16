@@ -1,219 +1,259 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 
 function App() {
-  const [forData ,setFormData] = useState({
-    firstName:"",
-    lastName:"",
-    email:"",
-    country:"India",
-    street:"",
-    city:"",
-    state:"",
-    pinCode:"",
-    comment:""
-
-
-
-  })
+  const [forData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    country: "India",
+    street: "",
+    city: "",
+    state: "",
+    pinCode: "",
+    comment: "false",
+    candidates: "false",
+    offers: "fasle",
+    pushNotificatio:"",
+    emailRadio:"",
+  });
 
   function changeHandler(event) {
-    const {name,value,checked,type} = event.target;
-    setFormData((prev) => ({...prev, [name]: type === "checkbox" ? checked:value} ) );
+    const { name, value, checked, type } = event.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  }
+
+  function submitHandler(event) {
+    event.preventDefault();
+    console.log("finaly printing the value of form Data:");
+    console.log(FormData)
+
+    
+
+
 
   }
 
-
   return (
     <>
+      <div className="flex flex-col mt-2 items-center">
+        <form onSubmit={submitHandler}>
+          <label>First Name</label>
+          <br />
+          <input
+            type="text"
+            name="firstName"
+            id="firstName"
+            placeholder="Enter Your First_Name"
+            value={forData.firstName}
+            onChange={changeHandler}
+            className="outline"
+          />
 
-        <div className='flex flex-col mt-2 items-center'>
-        <form>
+          <br />
 
-        <label>First Name</label>
-        <br/>
-        <input 
-          type="text"
-          name="firstName"
-          id="firstName"
-          placeholder='Enter Your First_Name'
-          value={FormData.firstName}
-          onChange={changeHandler}
-          className='outline'
-        />
+          <label>Last Name</label>
+          <br />
 
-        <br/>
+          <input
+            type="text"
+            name="lastName"
+            id="lastname"
+            placeholder="Enter Your Last_Name"
+            value={forData.lastName}
+            onChange={changeHandler}
+            className="outline"
+          />
+          <br />
+          <label htmlFor="email">Email address</label>
+          <br />
 
-        <label>Last Name</label>
-        <br/>
-        
-        <input 
-          type="text"
-          name='lastName'
-          id='lastname'
-          placeholder='Enter Your Last_Name'
-          value={FormData.lastName}
-          onChange={changeHandler}
-          className='outline'
+          <input
+            type="text"
+            name="email"
+            id="email"
+            placeholder="Enter Your Email"
+            value={forData.email}
+            onChange={changeHandler}
+            className="outline"
+          />
 
-        />
-        <br/>
-          <label htmlFor='email'>Email address</label>
-        <br/>
-        
-        <input 
-          type="text"
-          name='email'
-          id='email'
-          placeholder='Enter Your Email'
-          value={FormData.email}
-          onChange={changeHandler}
-          className='outline'
-
-        />
-
-        <br/>
-        <label>Country</label>
-        <br/>
-        <select
-        id='country'
-          name='country'
-          value={forData.country}
-          onChange={changeHandler}
-          className='outline'
+          <br />
+          <label>Country</label>
+          <br />
+          <select
+            id="country"
+            name="country"
+            value={forData.country}
+            onChange={changeHandler}
+            className="outline"
           >
+            <option>India</option>
+            <option>United States</option>
+            <option>Canada</option>
+            <option>Mexico</option>
+          </select>
 
-          <option>India</option>
-          <option>United States</option>
-          <option>Canada</option>
-          <option>Mexico</option>
+          <br />
+          <label>Street Addres</label>
+          <br />
 
-        </select>
+          <input
+            type="text"
+            name="street"
+            id="street"
+            placeholder="Enter Your Addrees"
+            value={forData.street}
+            onChange={changeHandler}
+            className="outline"
+          />
 
-        <br/>
-        <label>Street Addres</label>
-        <br/>
+          <br />
+          <lable>City</lable>
+          <br />
+          <input
+            type="text"
+            name="city"
+            id="city"
+            value={forData.city}
+            placeholder="Enter Your City_Name"
+            onChange={changeHandler}
+            className="outline"
+          />
 
-         <input 
-          type="text"
-          name='street'
-          id='street'
-          placeholder='Enter Your Addrees'
-          value={FormData.street}
-          onChange={changeHandler}
-          className='outline'
+          <br />
+          <lable>State/Province</lable>
+          <br />
+          <input
+            type="text"
+            name="state"
+            id="state"
+            value={forData.state}
+            placeholder="Enter Your State/Province"
+            onChange={changeHandler}
+            className="outline"
+          />
 
-        />
+          <br />
+          <lable>ZIP/Postal Code</lable>
+          <br />
+          <input
+            type="text"
+            name="PinCode"
+            id="pinCode"
+            value={forData.pinCode}
+            placeholder="Enter Your ZIP/Postel_Code"
+            onChange={changeHandler}
+            className="outline"
+          />
 
-        <br/>
-        <lable>City</lable>
-        <br/>
-        <input
-          type="text"
-          name='city'
-          id='city'
-          value={FormData.city}
-          placeholder='Enter Your City_Name'
-          onChange={changeHandler}
-          className='outline'
-        />
+          <br />
+          <fieldset>
+            <legend>By Email</legend>
+            <div className="flex ">
+              <input
+                name="comments"
+                id="comments"
+                type="checkbox"
+                checked={forData.comment}
+                onChange={changeHandler}
+              />
+              <div>
+                <label htmlFor="comments">Comments</label>
 
-        <br/>
-        <lable>State/Province</lable>
-        <br/>
-         <input
-          type="text"
-          name='state'
-          id='state'
-          value={FormData.state}
-          placeholder='Enter Your State/Province'
-          onChange={changeHandler}
-          className='outline'
-        />
+                <br />
+                <p>Fet notified when someones posts a comment on a posting</p>
+              </div>
+            </div>
 
-        
-        <br/>
-        <lable>ZIP/Postal Code</lable>
-        <br/>
-         <input
-          type="text"
-          name='PinCode'
-          id='pinCode'
-          value={FormData.pinCode}
-          placeholder='Enter Your ZIP/Postel_Code'
-          onChange={changeHandler}
-          className='outline'
-        />
+            <div className="flex">
+              <br />
 
-        <br/>
-        <fieldset>
-        <legend>By Email</legend>
-        <div className='flex '>
-        <input
-          name='comments'
-          id='comments'
-          type='checkbox'
-          checked={FormData.comment}
-          onChange={changeHandler}
+              <input
+                name="candidates"
+                id="candidates"
+                type="checkbox"
+                checked={forData.comment}
+                onChange={changeHandler}
+              />
+              <div>
+                <label htmlFor="comments">Candidates</label>
 
-        />
-        <div>
-           <label htmlFor='comments'>Comments</label>
-         
-      
-        <br/>
-         <p>Fet notified when someones posts a comment on a posting</p>
-        </div>
-      
-      
-      </div>
+                <br />
+                <p>Fet notified when someones posts a comment on a posting</p>
+              </div>
+            </div>
 
-      <div className='flex'>
+            <div className="flex">
+              <br />
 
-         <br/>
+              <input
+                name="offers"
+                id="offers"
+                type="checkbox"
+                checked={FormData.comment}
+                onChange={changeHandler}
+              />
+              <div>
+                <label htmlFor="comments">Offers</label>
 
-        <input
-          name='candidates'
-          id='candidates'
-          type='checkbox'
-          checked={FormData.comment}
-          onChange={changeHandler}
+                <br />
+                <p>Fet notified when someones posts a comment on a posting</p>
+              </div>
+            </div>
+          </fieldset>
 
-        />
-        <div>
-           <label htmlFor='comments'>Comments</label>
-         
-      
-        <br/>
-         <p>Fet notified when someones posts a comment on a posting</p>
-        </div>
+          <br/>
+          {/* //<br/> */}
 
-      </div>
+          <fieldset>
+            <legend>Push Notifications</legend>
+            <p>These are delivered via SMS to your mobile phone.</p>
+            <input
+            type="radio"
+            id="pushhEverything"
+            name="pushNotification"
+            value="Everything"
+            onChange={changeHandler}
 
+            />
+            <label htmlFor="pushEverything">Everything</label>
+            <br/>
 
-        </fieldset>
+              <input
+            type="radio"
+            id="emailRadio"
+            name="pushNotification"
+            value="Same as email"
+            onChange={changeHandler}
 
+            />
+            <label htmlFor="pushEverything">Same as email </label>
 
-     
+            <br/>
+             <input
+            type="radio"
+            id="pushNothing"
+            name="pushNotification"
+            value="No Push Notification"
+            onChange={changeHandler}
 
+            />
+            <label htmlFor="pushEverything">No Push Notification </label>
+          </fieldset>
 
-
-
-
+           <button className="bg-blue-500 w-25 text-white font-bold rounded py-2 hover:outline cursor-pointer">Save</button>
         </form>
-        </div>
-      
+      </div>
 
-
-
-
-
-      
-
+      <br />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
